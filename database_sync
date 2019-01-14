@@ -1,0 +1,6 @@
+curl -s https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz | tar xz
+rsync -a heroku-client/* .
+rmdir heroku-client
+PATH="bin:$PATH"
+
+heroku pg:copy shvdu::DATABASE_URL DATABASE_URL --app shvdu-staging --confirm shvdu-staging
